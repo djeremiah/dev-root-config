@@ -16,7 +16,8 @@ spec:
         forProvider:
           region: eu-west-1
     connectionDetails:
-    - name: arn
+    - type: FromFieldPath
+      name: arn
       fromFieldPath: status.atProvider.arn
     patches:
     - type: FromCompositeFieldPath
