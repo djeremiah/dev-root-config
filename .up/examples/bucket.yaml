@@ -1,7 +1,0 @@
-apiVersion: example.upbound.io/v1alpha1
-kind: Bucket
-metadata: 
-  name: accenture-bucket-1
-spec:
-  parameters:
-    bucketName: accenture-bucket-1
