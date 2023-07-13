@@ -1,0 +1,66 @@
+apiVersion: s3.aws.upbound.io/v1beta1
+kind: Bucket
+metadata:
+  name: murph-bucket
+spec:
+  forProvider:
+    region: eu-west-1
+---
+apiVersion: s3.aws.upbound.io/v1beta1
+kind: BucketServerSideEncryptionConfiguration
+metadata:
+  name: murph-bucket-see
+spec:
+  forProvider:
+    region: eu-west-1
+    bucketRef: 
+      name: murph-bucket
+    rule:
+    - applyServerSideEncryptionByDefault:
+      - sseAlgorithm: AES256
+      bucketKeyEnabled: true
+---
+apiVersion: s3.aws.upbound.io/v1beta1
+kind: BucketPublicAccessBlock
+metadata: 
+  name: murph-bucket-publicaccessblock
+spec: 
+  forProvider:
+    region: eu-west-1 
+    bucketRef: 
+      name: murph-bucket
+    blockPublicAcls: true
+    blockPublicPolicy: true 
+    ignorePublicAcls: true
+    restrictPublicBuckets: true
+---
+apiVersion: s3.aws.upbound.io/v1beta1
+kind: BucketPolicy
+metadata: 
+  name: murph-bucket-policy
+spec: 
+  forProvider: 
+    region: eu-west-1
+    bucketRef: 
+      name: murph-bucket
+    policy: |
+      {
+        "Version": "2012-10-17",
+        "Id": "PutObjectPolicy",
+        "Statement": [
+            {
+                "Sid": "RequireSSECObjectUploads",
+                "Effect": "Deny",
+                "Principal": "*",
+                "Action": "s3:PutObject",
+                "Resource": "arn:aws:s3:::murph-bucket/*",
+                "Condition": {
+                    "Null": {
+                        "s3:x-amz-server-side-encryption-customer-algorithm": "true"
+                    }
+                }
+            }
+        ]
+      }
+---
+  

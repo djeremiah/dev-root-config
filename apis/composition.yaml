@@ -15,6 +15,9 @@ spec:
       spec:
         forProvider:
           region: eu-west-1
+    connectionDetails:
+    - name: arn
+      fromFieldPath: status.atProvider.arn
     patches:
     - type: FromCompositeFieldPath
       fromFieldPath: spec.parameters.bucketName
