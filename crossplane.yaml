@@ -15,7 +15,7 @@ spec:
   crossplane:
     version: ">=v1.7.0-0"
   dependsOn:
-  - provider: xpkg.upbound.io/upbound/provider-aws-family
+  - provider: xpkg.upbound.io/upbound/provider-family-aws
     version: ">=v0.37.0"
   - configuration: xpkg.upbound.io/crossplane-by-example/0596b727-b349-4376-9f04-dc8f3c87890e
     version: ">=0.0.0"
