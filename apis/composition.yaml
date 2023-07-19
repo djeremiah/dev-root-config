@@ -41,28 +41,28 @@ spec:
 #          - applyServerSideEncryptionByDefault:
 #            - sseAlgorithm: AES256
 #            bucketKeyEnabled: true
-  # - name: bucket-publicaccessblock
-  #   base: 
-  #     apiVersion: s3.aws.upbound.io/v1beta1
-  #     kind: BucketPublicAccessBlock
-  #     spec: 
-  #       forProvider:
-  #         region: eu-west-1 
-  #         bucketSelector: 
-  #           matchControllerRef: true
-  #         blockPublicAcls: true
-  #         blockPublicPolicy: true 
-  #         ignorePublicAcls: true
-  #         restrictPublicBuckets: true
-  #   patches: 
-  #   - type: FromCompositeFieldPath
-  #     fromFieldPath: metadata.annotations[example.upbound.io/enable-edit]
-  #     toFieldPath: spec.managementPolicy
-  #     transforms: 
-  #     - type: map
-  #       map: 
-  #         true: ObserveOnly
-  #         false: FullControl
+  - name: bucket-publicaccessblock
+    base: 
+      apiVersion: s3.aws.upbound.io/v1beta1
+      kind: BucketPublicAccessBlock
+      spec: 
+        forProvider:
+          region: eu-west-1 
+          bucketSelector: 
+            matchControllerRef: true
+          blockPublicAcls: true
+          blockPublicPolicy: true 
+          ignorePublicAcls: true
+          restrictPublicBuckets: true
+    patches: 
+    - type: FromCompositeFieldPath
+      fromFieldPath: metadata.annotations[example.upbound.io/enable-edit]
+      toFieldPath: spec.managementPolicy
+      transforms: 
+      - type: map
+        map: 
+          true: ObserveOnly
+          false: FullControl
   # - name: bucket-versioning
   #   base: 
   #     apiVersion: s3.aws.upbound.io/v1beta1
