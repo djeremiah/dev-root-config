@@ -28,19 +28,19 @@ spec:
     - type: ToCompositeFieldPath
       fromFieldPath: status.atProvider.arn
       toFieldPath: status.bucketArn
-#  - name: bucket-serversideecryption
-#    base:
-#      apiVersion: s3.aws.upbound.io/v1beta1
-#      kind: BucketServerSideEncryptionConfiguration
-#      spec:
-#        forProvider:
-#          region: eu-west-1
-#          bucketSelector: 
-#            matchControllerRef: true
-#          rule:
-#          - applyServerSideEncryptionByDefault:
-#            - sseAlgorithm: AES256
-#            bucketKeyEnabled: true
+  - name: bucket-serversideecryption
+    base:
+      apiVersion: s3.aws.upbound.io/v1beta1
+      kind: BucketServerSideEncryptionConfiguration
+      spec:
+        forProvider:
+          #region: eu-west-1
+          bucketSelector: 
+            matchControllerRef: true
+          rule:
+          - applyServerSideEncryptionByDefault:
+            - sseAlgorithm: AES256
+            bucketKeyEnabled: true
   - name: bucket-publicaccessblock
     base: 
       apiVersion: s3.aws.upbound.io/v1beta1
