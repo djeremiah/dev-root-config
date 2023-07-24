@@ -18,4 +18,4 @@ spec:
   - provider: xpkg.upbound.io/upbound/provider-family-aws
     version: ">=v0.37.0"
   - configuration: xpkg.upbound.io/crossplane-by-example/0596b727-b349-4376-9f04-dc8f3c87890e
-    version: "=v0.0.0-9.f96dec2"
+    version: "=v0.0.0-10.55bee0c"
